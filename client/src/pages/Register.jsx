@@ -15,26 +15,24 @@ const Register = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-
-    try {
-        if (!showOTP) {
-            await register(name, email, password);
-            setShowOTP(true);
-            setError('');
-        } else {
-            await verifyOTP(email, otp);
-            navigate('/dashboard');
+        e.preventDefault();
+        setLoading(true);
+        setError('');
+        try {
+            if (!showOTP) {
+                await register(name, email, password);
+                setShowOTP(true);
+                setError('');
+            } else {
+                await verifyOTP(email, otp);
+                navigate('/dashboard');
+            }
+        } catch (err) {
+            setError(err);
+        } finally {
+            setLoading(false);
         }
-    } catch (err) {
-        setError(err?.response?.data?.message || err || "Registration failed");
-    } finally {
-        setLoading(false);
-    }
-};
-    
+    };
 
     return (
         <div className="max-w-md mx-auto mt-16 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
