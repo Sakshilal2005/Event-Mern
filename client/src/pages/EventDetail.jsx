@@ -64,7 +64,7 @@ const EventDetail = () => {
     const isSoldOut = event.availableSeats <= 0;
 
     return (
-        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden mt-8">
+        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 bg-white rounded-2xl shadow-xl overflow-hidden mt-8">
             {event.image ? (
                 <img src={event.image} alt={event.title} className="w-full h-80 object-cover" />
             ) : (
@@ -73,7 +73,7 @@ const EventDetail = () => {
                 </div>
             )}
 
-            <div className="p-8 md:p-12">
+            <div className="px-6 py-8 md:px-10 md:py-12">
                 <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-6">
                     <div>
                         <div className="inline-block bg-gray-200 text-gray-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-3">
