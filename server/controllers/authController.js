@@ -31,8 +31,13 @@ exports.registerUser = async (req, res) => {
         
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
         console.log(`OTP for ${email}: ${otp}`);
-        await OTP.create({email, otp, action: 'account_verification'})
-        await sendOTPEmail(email, otp,'account_verification');
+        await OTP.create({ email, otp, action: 'account_verification' });
+
+        try {
+           await sendOTPEmail(email, otp, 'account_verification');
+} catch (err) {
+    console.log("OTP email failed but OTP stored:", err.message);
+}
 
         res.status(201).json({
             message: 'User registered successfully. Please check your email for OTP to verify your account',
