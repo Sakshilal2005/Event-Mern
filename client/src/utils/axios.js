@@ -1,10 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'https://event-mern-ha4f.onrender.com',
-    headers: {
-        'Content-Type': 'application/json',
-    },
+    baseURL: 'http://localhost:5000/api',
 });
 
 api.interceptors.request.use((config) => {
