@@ -15,16 +15,18 @@ const Home = () => {
         return () => clearTimeout(timeoutId);
     }, [search]);
 
-    const fetchEvents = async () => {
-        try {
-            const { data } = await api.get(`/events?search=${search}`);
-            setEvents(data);
-        } catch (error) {
-            console.error('Error fetching events:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
+   const fetchEvents = async () => {
+    try {
+        const { data } = await api.get(`/events?search=${search}`);
+
+        setEvents(Array.isArray(data) ? data : data.events || []);
+
+    } catch (error) {
+        console.error('Error fetching events:', error);
+    } finally {
+        setLoading(false);
+    }
+};
 
     return (
         <div className="flex flex-col min-h-screen">
