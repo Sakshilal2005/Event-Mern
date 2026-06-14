@@ -18,6 +18,7 @@ const Home = () => {
    const fetchEvents = async () => {
     try {
         const { data } = await api.get(`/events?search=${search}`);
+        console.log("API Data:", data);
 
         setEvents(Array.isArray(data) ? data : data.events || []);
 
@@ -27,6 +28,7 @@ const Home = () => {
         setLoading(false);
     }
 };
+console.log("Events State:", events);
 
     return (
         <div className="flex flex-col min-h-screen">
